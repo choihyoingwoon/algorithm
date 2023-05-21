@@ -1,23 +1,23 @@
+def fibo_memo(x):
+    if x == 0:
+        memo[x] = [1,0]
+        return memo[x]
+    elif x == 1:
+        memo[x] = [0,1]
+        return memo[x]
+    elif x in memo:
+        return memo[x]
+    else:
+        a = fibo_memo(x-1)[0] + fibo_memo(x-2)[0]
+        b = fibo_memo(x-1)[1] + fibo_memo(x-2)[1]
+        memo[x] = [a,b]
+        return memo[x]
 
-
-n=int(input())
-for _ in range(n):
-    a=int(input())
-    zero=0
-    one=0
-
-
-    def fibonacci(n):
-        if n == 0:
-            print("0")
-            zero += 1
-        elif n == 1:
-            print('1')
-            one += 1
-            return 1
-        else:
-            fibonacci(n - 1) + fibonacci(n - 2)
-
-    if a==0:
-        one+=1
-    fibonacci(a)
+import sys
+input = sys.stdin.readline
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    memo = {}
+    f = fibo_memo(n)
+    print(f[0],f[1])
